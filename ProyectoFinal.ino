@@ -4,12 +4,6 @@
  
 const char* ssid = "INFINITUM24Q5_2.4";       
 const char* password = "X6V7HzbWwN";                  
- 
-int Pin0=0;    
-int Pin1=1;
-int Pin2=2;
-int Pin3=3;
-int Pin4=4;
                  
 void setup() 
 {
