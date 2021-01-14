@@ -37,7 +37,7 @@ void loop()
         http.begin("http://tsmpjgv9.000webhostapp.com/luzPost.php");
         http.addHeader("Content-Type", "application/json");
 
-        StaticJsonDocument<69> doc;
+        StaticJsonDocument<100> doc;
         doc["id"]=i;
 
         String request;
@@ -47,7 +47,7 @@ void loop()
         if(httpCode>0)
         {
            String respuesta = http.getString();
-           Serial.print("Respuesta: "+respuesta);
+           Serial.println("Respuesta: "+respuesta);
            if (respuesta [12]=='1')
            {
              digitalWrite(i, HIGH);
@@ -57,6 +57,11 @@ void loop()
              digitalWrite(i, LOW);
            }
            http.end();
+        }
+        else
+        {
+           Serial.println("Error");
+           break;
         }
         delay(50);   
      }
