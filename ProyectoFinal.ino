@@ -10,14 +10,14 @@ void setup()
   delay(10);
   Serial.begin(115200);
   WiFi.begin(ssid,password);
-  pinMode(1, OUTPUT); 
+  pinMode(0, OUTPUT); 
+  pinMode(1, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
   pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
 
   while(WiFi.status() != WL_CONNECTED)
   {
@@ -29,7 +29,7 @@ void setup()
 
 void loop() 
 {
-  for(int i=1; i<9;i++)
+  for(int i=0; i<8;i++)
   {
     if(WiFi.status()==WL_CONNECTED)
     {
