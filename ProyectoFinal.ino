@@ -39,7 +39,7 @@ void loop()
         http.addHeader("Content-Type", "application/json");
 
         StaticJsonDocument<100> doc;
-        doc["id"]=salida[i];
+        doc["id"]=i+1;
 
         String request;
         serializeJson(doc, request);
@@ -64,7 +64,7 @@ void loop()
            Serial.println("Error");
            break;
         }
-        delay(500);   
+        delay(10000);   
      }
   }
 }
