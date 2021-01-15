@@ -3,27 +3,28 @@
 #include <ArduinoJson.h>             
  
 const char* ssid = "INFINITUM24Q5_2.4";       
-const char* password = "X6V7HzbWwN";                  
+const char* password = "X6V7HzbWwN";      
+
+int salida[8]={16,5,4,0,2,14,12,13};
                  
 void setup() 
 {
   delay(10);
   Serial.begin(115200);
   WiFi.begin(ssid,password);
-  pinMode(0, OUTPUT); 
-  pinMode(1, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
+  pinMode(salida[0], OUTPUT); 
+  pinMode(salida[1], OUTPUT);
+  pinMode(salida[2], OUTPUT);
+  pinMode(salida[3], OUTPUT);
+  pinMode(salida[4], OUTPUT);
+  pinMode(salida[5], OUTPUT);
+  pinMode(salida[6], OUTPUT);
+  pinMode(salida[7], OUTPUT);
 
   while(WiFi.status() != WL_CONNECTED)
   {
     delay(500);
   }
-  //Llegado este punto debería ya haberse conectado
   
 }
 
@@ -38,7 +39,7 @@ void loop()
         http.addHeader("Content-Type", "application/json");
 
         StaticJsonDocument<100> doc;
-        doc["id"]=i;
+        doc["id"]=salida[i];
 
         String request;
         serializeJson(doc, request);
@@ -50,11 +51,11 @@ void loop()
            Serial.println("Respuesta: "+respuesta);
            if (respuesta [12]=='1')
            {
-             digitalWrite(i, HIGH);
+             digitalWrite(salida[i], HIGH);
            }
            else
            {
-             digitalWrite(i, LOW);
+             digitalWrite(salida[i], LOW);
            }
            http.end();
         }
@@ -63,7 +64,7 @@ void loop()
            Serial.println("Error");
            break;
         }
-        delay(50);   
+        delay(500);   
      }
   }
 }
